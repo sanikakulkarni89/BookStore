@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface BookService {
     List<Book> getAllBooks();
+    boolean buyBook(Long id);
+    double sellBook(Long id);
+    double sellNewBook(String isbn);
 }

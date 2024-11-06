@@ -26,17 +26,25 @@ public class BookController {
 
     @PostMapping("/buy/{id}")
     public String buyBook(@PathVariable Long id) {
-        Optional<Book> book = bookServiceImpl.getBookById(id);
-        if (book.isPresent()) {
-            bookServiceImpl.deleteBook(id);
+        if (bookServiceImpl.buyBook(id)) {
             return "Success! Book bought.";
         }
         return "Failure! Book not found.";
     }
 
-    @PostMapping("/sell")
-    public String sellBook(@RequestBody Book book) {
-        bookServiceImpl.saveBook(book);
-        return "Success! Book added to inventory.";
+    @PostMapping("/sell{id}")
+    public String sellBook(@PathVariable Long id){
+        double price = bookServiceImpl.sellBook(id);
+        if(price < 10){
+            return "Failure! Exhausted Selling attempts";
+        }else{
+            return "Success! Book bought. Price is " + price;
+        }
+    }
+
+    @PostMapping("/sellNew/{isbn}")
+    public String sellNewBook(@PathVariable String isbn) {
+       double price =  bookServiceImpl.sellNewBook(isbn);
+        return "Success! Book added to inventory. Price of the book now is:" + price;
     }
 }

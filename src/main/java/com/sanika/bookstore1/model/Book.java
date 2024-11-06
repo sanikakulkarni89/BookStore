@@ -1,5 +1,7 @@
 package com.sanika.bookstore1.model;
 
+
+import com.sanika.bookstore1.enums.BookState;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,16 +24,21 @@ public class Book {
     private String author;
     private String edition;
     private double price;
+    @Enumerated(EnumType.STRING)
+    private BookState state;
+
+
 
     // Constructors
     public Book() {}
 
-    public Book(String isbn, String title, String author, String edition, double price) {
+    public Book(String isbn, String title, String author, String edition, double price, BookState state ) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.edition = edition;
         this.price = price;
+        this.state = state;
     }
 
     // Additional Getters and Setters for other fields here...
@@ -45,6 +52,7 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", edition='" + edition + '\'' +
                 ", price=" + price +
+                ", state=" + state +
                 '}';
     }
 }
