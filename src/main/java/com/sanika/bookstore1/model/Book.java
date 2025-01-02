@@ -14,7 +14,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="books")
 public class Book {
-    // Getters and Setters
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +27,6 @@ public class Book {
     private BookState state;
 
 
-
-    // Constructors
     public Book() {}
 
     public Book(String isbn, String title, String author, String edition, double price, BookState state ) {
@@ -41,7 +38,6 @@ public class Book {
         this.state = state;
     }
 
-    // Additional Getters and Setters for other fields here...
 
     @Override
     public String toString() {
